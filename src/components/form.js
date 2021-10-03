@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { FormFields } from "../constants";
 import Button from "./button";
 import Input from "./input";
@@ -26,12 +26,12 @@ function Form({ title }) {
       : time;
   };
 
-  const handleFieldChange = useCallback( (event) => {
+  const handleFieldChange =  (event) => {
     const time = { ...mytime };
     time[event.target.name] = event.target.value;
     const formattedTime = formatTime(time);
     setMyTime(formattedTime);
-  },[]);
+  };
 
   useEffect(() => {
     if (isStartTimer && !isPause) {
@@ -63,7 +63,7 @@ function Form({ title }) {
     setInitialStartTime(mytime);
   };
 
-  const handleClick = useCallback( (event, name) => {
+  const handleClick =  (event, name) => {
     event.preventDefault();
     if (name === "start") {
       startTime();
@@ -73,7 +73,7 @@ function Form({ title }) {
       setMyTime(initialStartTime);
       SetStartTimer(true)
     }
-  },[]);
+  };
 
   return (
     <form>
